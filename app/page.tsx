@@ -10,7 +10,10 @@ import { WhatsAppForm } from "@/components/features/whatsapp/whatsapp-form";
 import { ChatPreview } from "@/components/features/whatsapp/chat-preview";
 import { QRGenerator } from "@/components/features/qr/qr-generator";
 import { QRCanvas } from "@/components/features/qr/qr-canvas";
+import { UrlForm } from "@/components/features/shortener/url-form";
+import { UrlResult } from "@/components/features/shortener/url-result";
 import type { WhatsAppFormData } from "@/types/whatsapp.types";
+import type { ShortenUrlResponse } from "@/types/shortener.types";
 
 export default function Home() {
   const { t } = useLocale();
@@ -27,6 +30,11 @@ export default function Home() {
   // QR state
   const [qrValue, setQrValue] = React.useState("");
   const [qrColor, setQrColor] = React.useState("#075E54");
+
+  // Shortener state
+  const [shortenedUrl, setShortenedUrl] = React.useState<
+    ShortenUrlResponse["data"] | null
+  >(null);
 
   return (
     <div className="min-h-screen flex flex-col bg-light-bg dark:bg-dark-bg transition-colors duration-300">
@@ -118,22 +126,35 @@ export default function Home() {
               </div>
             </TabsContent>
 
-            {/* Shortener Tab (Placeholder) */}
+            {/* Shortener Tab */}
             <TabsContent value="shortener" className="mt-0">
-              <Card className="p-12 text-center animate-fadeIn">
-                <div className="max-w-md mx-auto space-y-4">
-                  <div className="w-20 h-20 mx-auto rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="text-4xl">🔗</span>
+              <div className="max-w-2xl mx-auto space-y-6">
+                {/* Form Card */}
+                <Card className="p-6 md:p-8 animate-fadeIn">
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-syne font-bold text-light-text dark:text-dark-text mb-2">
+                      Acortador de URLs
+                    </h3>
+                    <p className="text-sm text-light-muted dark:text-dark-muted">
+                      Transforma URLs largas en enlaces cortos y fáciles de
+                      compartir.
+                    </p>
                   </div>
-                  <h3 className="text-2xl font-syne font-bold text-light-text dark:text-dark-text">
-                    Acortador de URLs
-                  </h3>
-                  <p className="text-light-muted dark:text-dark-muted">
-                    El acortador de URLs se implementará en la siguiente fase.
-                    Pronto podrás crear enlaces cortos personalizados.
-                  </p>
-                </div>
-              </Card>
+                  <UrlForm onSuccess={setShortenedUrl} />
+                </Card>
+
+                {/* Result Display */}
+                {shortenedUrl && (
+                  <Card className="p-6 md:p-8 animate-fadeIn">
+                    <UrlResult
+                      shortUrl={shortenedUrl.shortUrl}
+                      originalUrl={shortenedUrl.originalUrl}
+                      alias={shortenedUrl.alias}
+                      createdAt={shortenedUrl.createdAt}
+                    />
+                  </Card>
+                )}
+              </div>
             </TabsContent>
           </Tabs>
         </div>

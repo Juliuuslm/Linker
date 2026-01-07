@@ -9,11 +9,17 @@
     "shortener": "URL Shortener"
   },
   "whatsapp": {
+    "title": "WhatsApp Link",
+    "description": "Create direct links to start WhatsApp conversations with custom number and message.",
+    "country": "Country",
     "phone": "Phone Number",
     "phonePlaceholder": "e.g. 15551234567",
-    "message": "Custom Message (Optional)",
+    "phoneHint": "Enter only the number without country code",
+    "message": "Custom Message",
     "messagePlaceholder": "Hello! I want more info...",
+    "messageHint": "Select text to apply formatting: bold, italic, strikethrough or monospace",
     "generate": "Generate WhatsApp Link",
+    "generatedLink": "Your WhatsApp link",
     "chatHeader": "Business Account",
     "online": "Online"
   },
@@ -52,7 +58,9 @@
     "copied": "Copied!",
     "share": "Share",
     "preview": "Preview",
-    "close": "Close"
+    "close": "Close",
+    "optional": "Optional",
+    "open": "Open"
   },
   "history": {
     "title": "Recent Activity",

@@ -9,11 +9,17 @@
     "shortener": "Acortar URL"
   },
   "whatsapp": {
+    "title": "Link de WhatsApp",
+    "description": "Crea enlaces directos para iniciar conversaciones en WhatsApp con número y mensaje personalizados.",
+    "country": "País",
     "phone": "Número de Teléfono",
     "phonePlaceholder": "Ej. 15551234567",
-    "message": "Mensaje Personalizado (Opcional)",
+    "phoneHint": "Ingresa solo el número sin el código de país",
+    "message": "Mensaje Personalizado",
     "messagePlaceholder": "¡Hola! Quiero más información...",
+    "messageHint": "Selecciona texto para aplicar formato: negrita, cursiva, tachado o monoespaciado",
     "generate": "Generar Link de WhatsApp",
+    "generatedLink": "Tu enlace de WhatsApp",
     "chatHeader": "Cuenta de Negocio",
     "online": "En línea"
   },
@@ -52,7 +58,9 @@
     "copied": "¡Copiado!",
     "share": "Compartir",
     "preview": "Vista Previa",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "optional": "Opcional",
+    "open": "Abrir"
   },
   "history": {
     "title": "Actividad Reciente",

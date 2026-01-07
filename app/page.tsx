@@ -1,56 +1,79 @@
 "use client";
 
-import { ThemeToggle } from "@/components/layout/theme-toggle";
-import { LanguageToggle } from "@/components/layout/language-toggle";
+import * as React from "react";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
 import { useLocale } from "@/lib/hooks/use-locale";
-import { useTheme } from "@/lib/hooks/use-theme";
+import { Card } from "@/components/ui/card";
 
 export default function Home() {
   const { t } = useLocale();
-  const { theme } = useTheme();
+  const [showHistory, setShowHistory] = React.useState(false);
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-light-bg dark:bg-dark-bg transition-colors duration-300">
-      {/* Header con toggles */}
-      <div className="absolute top-6 right-6 flex items-center gap-4">
-        <LanguageToggle />
-        <ThemeToggle />
-      </div>
+    <div className="min-h-screen flex flex-col bg-light-bg dark:bg-dark-bg transition-colors duration-300">
+      {/* Header */}
+      <Header
+        onHistoryClick={() => setShowHistory(!showHistory)}
+        historyCount={0}
+      />
 
-      {/* Contenido principal */}
-      <div className="text-center space-y-6 p-8 max-w-4xl">
-        <h1 className="text-6xl md:text-7xl font-kangge font-bold text-light-text dark:text-dark-text transition-colors duration-300">
-          LINKER<span className="text-primary">.</span>
-        </h1>
-        <p className="text-xl md:text-2xl text-light-muted dark:text-dark-muted max-w-2xl mx-auto transition-colors duration-300 font-syne font-semibold">
-          {t.hero.title}
-        </p>
-        <p className="text-base text-light-muted dark:text-dark-muted max-w-3xl mx-auto transition-colors duration-300">
-          {t.hero.description}
-        </p>
-
-        {/* Indicadores de estado */}
-        <div className="flex items-center justify-center gap-6 pt-8">
-          <div className="px-4 py-2 rounded-full bg-light-text/5 dark:bg-dark-text/5 border border-light-muted/20 dark:border-dark-muted/20">
-            <span className="text-sm font-syne font-bold text-light-muted dark:text-dark-muted">
-              Tema: {theme === "light" ? "☀️ Claro" : "🌙 Oscuro"}
-            </span>
+      {/* Main Content */}
+      <main className="flex-grow w-full">
+        {/* Hero Section */}
+        <div className="max-w-4xl mx-auto px-6 pt-12 pb-24 text-center">
+          <div className="space-y-4 mb-16">
+            <h2 className="text-5xl md:text-7xl font-syne font-extrabold leading-tight tracking-tight text-light-text dark:text-dark-text">
+              {t.hero.title}
+              <span className="text-primary">.</span>
+            </h2>
+            <p className="text-lg md:text-xl font-medium max-w-2xl mx-auto text-light-muted dark:text-dark-muted">
+              {t.hero.description}
+            </p>
           </div>
-        </div>
 
-        {/* Status */}
-        <div className="pt-12 space-y-2">
-          <p className="text-sm text-green-600 dark:text-green-400 font-bold">
-            ✅ FASE 1: Setup Base
-          </p>
-          <p className="text-sm text-green-600 dark:text-green-400 font-bold">
-            ✅ FASE 2: Componentes UI
-          </p>
-          <p className="text-sm text-primary font-bold animate-pulse">
-            🚀 FASE 3: Temas e i18n - En Progreso
-          </p>
+          {/* Tool Container (Placeholder) */}
+          <Card className="p-8 md:p-12 min-h-[400px] flex items-center justify-center">
+            <div className="text-center space-y-6">
+              <div className="w-20 h-20 mx-auto rounded-full bg-primary/10 flex items-center justify-center">
+                <span className="text-4xl">🚀</span>
+              </div>
+              <div className="space-y-2">
+                <p className="text-2xl font-syne font-bold text-light-text dark:text-dark-text">
+                  Próximamente
+                </p>
+                <p className="text-sm text-light-muted dark:text-dark-muted max-w-md mx-auto">
+                  Las herramientas de WhatsApp, QR y Acortador se implementarán
+                  en las siguientes fases
+                </p>
+              </div>
+
+              {/* Progress */}
+              <div className="pt-8 space-y-2 text-left max-w-md mx-auto">
+                <p className="text-xs text-green-600 dark:text-green-400 font-bold flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-600 dark:bg-green-400"></span>
+                  ✅ FASE 1: Setup Base
+                </p>
+                <p className="text-xs text-green-600 dark:text-green-400 font-bold flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-600 dark:bg-green-400"></span>
+                  ✅ FASE 2: Componentes UI
+                </p>
+                <p className="text-xs text-green-600 dark:text-green-400 font-bold flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-600 dark:bg-green-400"></span>
+                  ✅ FASE 3: Temas e i18n
+                </p>
+                <p className="text-xs text-primary font-bold flex items-center gap-2 animate-pulse">
+                  <span className="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+                  🚀 FASE 4: Header y Footer - En Progreso
+                </p>
+              </div>
+            </div>
+          </Card>
         </div>
-      </div>
-    </main>
+      </main>
+
+      {/* Footer */}
+      <Footer />
+    </div>
   );
 }

@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
-import { Quicksand } from "next/font/google";
+import { Quicksand, Syne } from "next/font/google";
+import { ThemeProvider } from "@/contexts/theme-provider";
+import { LocaleProvider } from "@/contexts/locale-provider";
 import "./globals.css";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
   variable: "--font-quicksand",
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const syne = Syne({
+  subsets: ["latin"],
+  variable: "--font-syne",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -28,8 +36,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={quicksand.variable} suppressHydrationWarning>
-        {children}
+      <body
+        className={`${quicksand.variable} ${syne.variable}`}
+        suppressHydrationWarning
+      >
+        <ThemeProvider defaultTheme="light">
+          <LocaleProvider defaultLocale="es">{children}</LocaleProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

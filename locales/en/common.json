@@ -1,0 +1,75 @@
+{
+  "hero": {
+    "title": "Simplify Your Connections",
+    "description": "The all-in-one tool for digital creators. Generate WhatsApp links, QR codes, and short URLs in seconds."
+  },
+  "tabs": {
+    "whatsapp": "WhatsApp Link",
+    "qr": "QR Creator",
+    "shortener": "URL Shortener"
+  },
+  "whatsapp": {
+    "phone": "Phone Number",
+    "phonePlaceholder": "e.g. 15551234567",
+    "message": "Custom Message (Optional)",
+    "messagePlaceholder": "Hello! I want more info...",
+    "generate": "Generate WhatsApp Link",
+    "chatHeader": "Business Account",
+    "online": "Online"
+  },
+  "qr": {
+    "types": {
+      "url": "URL",
+      "text": "Text",
+      "email": "Email",
+      "vcard": "Contact"
+    },
+    "labels": {
+      "url": "Website URL",
+      "text": "Content",
+      "email": "Email Address",
+      "subject": "Subject",
+      "body": "Message",
+      "name": "Full Name",
+      "phone": "Phone",
+      "organization": "Organization",
+      "title": "Job Title"
+    },
+    "color": "QR Color",
+    "format": "Format",
+    "download": "Download QR Code"
+  },
+  "shortener": {
+    "urlPlaceholder": "Paste long URL here",
+    "aliasLabel": "Custom Alias (Optional)",
+    "aliasPlaceholder": "my-custom-link",
+    "generate": "Shorten URL",
+    "generating": "Shortening...",
+    "result": "Your Result"
+  },
+  "common": {
+    "copy": "Copy",
+    "copied": "Copied!",
+    "share": "Share",
+    "preview": "Preview",
+    "close": "Close"
+  },
+  "history": {
+    "title": "Recent Activity",
+    "empty": "No history yet",
+    "clear": "Clear All"
+  },
+  "footer": {
+    "copyright": "Copyright © 2025 LINKER. Built with love and AI",
+    "product": "Product",
+    "legal": "Legal",
+    "social": "Follow Us",
+    "links": {
+      "features": "Features",
+      "pricing": "Pricing",
+      "api": "API",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    }
+  }
+}

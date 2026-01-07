@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #F8F8F8;
+  --text: #191A1B;
+  --muted: #838A8D;
+  --contrast: #F84733;
+}
+
+.dark {
+  --bg: #191A1B;
+  --text: #F6F6F6;
+  --muted: #F3DDCA;
+  --contrast: #F84733;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-quicksand), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-syne), sans-serif;
+}
+
+.font-kangge {
+  font-family: var(--font-kangge), serif;
+}
+
+/* Custom Scrollbar */
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+}
+
+.dark .custom-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* WhatsApp Pattern Background */
+.wa-pattern {
+  background-color: #E5DDD5;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+.dark .wa-pattern {
+  background-color: #0B141A;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 2px, transparent 2px);
+}
+
+/* Selection Color */
+::selection {
+  background-color: #F84733;
+  color: white;
+}
+
+/* Smooth Animations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent FOUC (Flash of Unstyled Content) */
+html {
+  color-scheme: light dark;
+}

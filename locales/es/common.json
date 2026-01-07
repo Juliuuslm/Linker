@@ -1,0 +1,75 @@
+{
+  "hero": {
+    "title": "Simplifica Tus Conexiones",
+    "description": "La herramienta todo en uno para creadores digitales. Genera enlaces de WhatsApp, códigos QR y URLs cortas en segundos."
+  },
+  "tabs": {
+    "whatsapp": "Link WhatsApp",
+    "qr": "Creador QR",
+    "shortener": "Acortar URL"
+  },
+  "whatsapp": {
+    "phone": "Número de Teléfono",
+    "phonePlaceholder": "Ej. 15551234567",
+    "message": "Mensaje Personalizado (Opcional)",
+    "messagePlaceholder": "¡Hola! Quiero más información...",
+    "generate": "Generar Link de WhatsApp",
+    "chatHeader": "Cuenta de Negocio",
+    "online": "En línea"
+  },
+  "qr": {
+    "types": {
+      "url": "URL",
+      "text": "Texto",
+      "email": "Email",
+      "vcard": "Contacto"
+    },
+    "labels": {
+      "url": "URL del Sitio Web",
+      "text": "Contenido",
+      "email": "Correo Electrónico",
+      "subject": "Asunto",
+      "body": "Mensaje",
+      "name": "Nombre Completo",
+      "phone": "Teléfono",
+      "organization": "Organización",
+      "title": "Cargo"
+    },
+    "color": "Color del QR",
+    "format": "Formato",
+    "download": "Descargar Código QR"
+  },
+  "shortener": {
+    "urlPlaceholder": "Pega tu URL larga aquí",
+    "aliasLabel": "Alias Personalizado (Opcional)",
+    "aliasPlaceholder": "mi-enlace-personal",
+    "generate": "Acortar URL",
+    "generating": "Acortando...",
+    "result": "Tu Resultado"
+  },
+  "common": {
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "share": "Compartir",
+    "preview": "Vista Previa",
+    "close": "Cerrar"
+  },
+  "history": {
+    "title": "Actividad Reciente",
+    "empty": "Sin historial aún",
+    "clear": "Borrar Todo"
+  },
+  "footer": {
+    "copyright": "Copyright © 2025 LINKER. Creado con amor e IA",
+    "product": "Producto",
+    "legal": "Legal",
+    "social": "Síguenos",
+    "links": {
+      "features": "Características",
+      "pricing": "Precios",
+      "api": "API",
+      "privacy": "Política de Privacidad",
+      "terms": "Términos de Servicio"
+    }
+  }
+}

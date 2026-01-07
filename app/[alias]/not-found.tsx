@@ -17,7 +17,7 @@ export default function NotFound() {
 
         {/* Content */}
         <div className="space-y-4">
-          <h1 className="text-5xl md:text-6xl font-syne font-extrabold text-light-text dark:text-dark-text">
+          <h1 className="text-6xl md:text-7xl font-kangge font-bold tracking-wider text-light-text dark:text-dark-text">
             404
           </h1>
           <h2 className="text-2xl font-syne font-bold text-light-text dark:text-dark-text">

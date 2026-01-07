@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
 import { Quicksand, Syne } from "next/font/google";
+import localFont from "next/font/local";
 import { ThemeProvider } from "@/contexts/theme-provider";
 import { LocaleProvider } from "@/contexts/locale-provider";
 import "./globals.css";
+
+const kangge = localFont({
+  src: "../public/fonts/Kangge.woff2",
+  variable: "--font-kangge",
+  display: "swap",
+});
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -37,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body
-        className={`${quicksand.variable} ${syne.variable}`}
+        className={`${kangge.variable} ${quicksand.variable} ${syne.variable}`}
         suppressHydrationWarning
       >
         <ThemeProvider defaultTheme="light">

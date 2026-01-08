@@ -79,7 +79,10 @@ export default function Home() {
                       {t.whatsapp.description}
                     </p>
                   </div>
-                  <WhatsAppForm onFormChange={setWhatsappData} />
+                  <WhatsAppForm
+                    onFormChange={setWhatsappData}
+                    initialData={whatsappData}
+                  />
                 </Card>
 
                 {/* Preview Column */}

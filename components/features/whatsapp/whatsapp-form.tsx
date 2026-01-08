@@ -26,18 +26,22 @@ import type {
 interface WhatsAppFormProps {
   onLinkGenerated?: (result: WhatsAppLinkResult) => void;
   onFormChange?: (data: WhatsAppFormData) => void;
+  initialData?: WhatsAppFormData;
 }
 
 export function WhatsAppForm({
   onLinkGenerated,
   onFormChange,
+  initialData,
 }: WhatsAppFormProps) {
   const { t } = useLocale();
-  const [formData, setFormData] = React.useState<WhatsAppFormData>({
-    country: COUNTRIES[0], // México por defecto
-    phone: "",
-    message: "",
-  });
+  const [formData, setFormData] = React.useState<WhatsAppFormData>(
+    initialData || {
+      country: COUNTRIES[0], // México por defecto
+      phone: "",
+      message: "",
+    }
+  );
   const [generatedLink, setGeneratedLink] = React.useState<string>("");
   const [copied, setCopied] = React.useState(false);
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);

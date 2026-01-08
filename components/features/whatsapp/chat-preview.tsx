@@ -90,8 +90,8 @@ export function ChatPreview({ formData }: ChatPreviewProps) {
           {/* Header */}
           <div className="bg-[#075E54] px-4 py-3 flex items-center gap-3 shadow-md">
             <ChevronLeft className="w-6 h-6 text-white" />
-            <div className="w-10 h-10 rounded-full bg-gray-300 flex-shrink-0 flex items-center justify-center text-xl">
-              {formData.country.iso}
+            <div className="w-10 h-10 rounded-full bg-gray-300 flex-shrink-0 flex items-center justify-center text-2xl">
+              {formData.country.flag}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-white font-medium text-sm truncate">

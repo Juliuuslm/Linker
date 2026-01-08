@@ -22,7 +22,7 @@ export default function Home() {
 
   // WhatsApp state
   const [whatsappData, setWhatsappData] = React.useState<WhatsAppFormData>({
-    country: { code: "+52", iso: "🇲🇽", name: "México" },
+    country: { code: "+52", iso: "mx", name: "México", flag: "🇲🇽" },
     phone: "",
     message: "",
   });

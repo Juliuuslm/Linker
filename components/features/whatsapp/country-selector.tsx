@@ -67,7 +67,7 @@ export function CountrySelector({ value, onChange }: CountrySelectorProps) {
         aria-expanded={isOpen}
       >
         <div className="flex items-center gap-2">
-          <span className="text-2xl">{value.iso}</span>
+          <span className="text-2xl">{value.flag}</span>
           <span className="font-medium">{value.code}</span>
         </div>
         <ChevronDown
@@ -126,7 +126,7 @@ export function CountrySelector({ value, onChange }: CountrySelectorProps) {
                       "bg-primary/20 font-semibold"
                   )}
                 >
-                  <span className="text-2xl">{country.iso}</span>
+                  <span className="text-2xl">{country.flag}</span>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-light-text dark:text-dark-text truncate">
                       {country.name}

@@ -1,5 +1,3 @@
-import { getCountryFlag } from "@/lib/utils/country-flags";
-
 export interface Country {
   code: string;
   iso: string;

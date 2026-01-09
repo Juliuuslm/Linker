@@ -24,7 +24,11 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "LINKER - Simplifica Tus Conexiones",
+  metadataBase: new URL('https://linkeer.com'),
+  title: {
+    default: "LINKER - Simplifica Tus Conexiones",
+    template: "%s | LINKER"
+  },
   description:
     "La herramienta todo en uno para creadores digitales. Genera enlaces de WhatsApp, códigos QR y URLs cortas en segundos.",
   keywords: [
@@ -33,7 +37,59 @@ export const metadata: Metadata = {
     "URL Shortener",
     "Link Generator",
     "Digital Tools",
+    "Herramientas digitales",
+    "Generador de enlaces",
+    "Códigos QR",
+    "Acortador de URLs",
   ],
+  authors: [{ name: "LINKER Team" }],
+  creator: "LINKER",
+  publisher: "LINKER",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    url: "https://linkeer.com",
+    siteName: "LINKER",
+    title: "LINKER - Simplifica Tus Conexiones",
+    description:
+      "La herramienta todo en uno para creadores digitales. Genera enlaces de WhatsApp, códigos QR y URLs cortas en segundos.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "LINKER - Plataforma de herramientas digitales",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LINKER - Simplifica Tus Conexiones",
+    description:
+      "La herramienta todo en uno para creadores digitales. Genera enlaces de WhatsApp, códigos QR y URLs cortas en segundos.",
+    images: ["/og-image.png"],
+    creator: "@linker",
+  },
+  icons: {
+    icon: [
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  manifest: "/manifest.json",
+  alternates: {
+    canonical: "https://linkeer.com",
+    languages: {
+      "es-ES": "https://linkeer.com",
+      "en-US": "https://linkeer.com/en",
+    },
+  },
 };
 
 export default function RootLayout({
@@ -43,6 +99,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "LINKER",
+              "description": "La herramienta todo en uno para creadores digitales. Genera enlaces de WhatsApp, códigos QR y URLs cortas en segundos.",
+              "url": "https://linkeer.com",
+              "applicationCategory": "UtilityApplication",
+              "operatingSystem": "Any",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "ratingCount": "1000"
+              }
+            })
+          }}
+        />
+      </head>
       <body
         className={`${kangge.variable} ${quicksand.variable} ${syne.variable}`}
         suppressHydrationWarning

@@ -72,9 +72,9 @@ export default function Home() {
                 {/* Form Column */}
                 <Card className="p-6 md:p-8 animate-fadeIn">
                   <div className="mb-6">
-                    <h3 className="text-2xl font-syne font-bold text-light-text dark:text-dark-text mb-2">
+                    <h2 className="text-2xl font-syne font-bold text-light-text dark:text-dark-text mb-2">
                       {t.whatsapp.title}
-                    </h3>
+                    </h2>
                     <p className="text-sm text-light-muted dark:text-dark-muted">
                       {t.whatsapp.description}
                     </p>
@@ -103,9 +103,9 @@ export default function Home() {
                 {/* Form Column */}
                 <Card className="p-6 md:p-8 animate-fadeIn">
                   <div className="mb-6">
-                    <h3 className="text-2xl font-syne font-bold text-light-text dark:text-dark-text mb-2">
+                    <h2 className="text-2xl font-syne font-bold text-light-text dark:text-dark-text mb-2">
                       Creador de Códigos QR
-                    </h3>
+                    </h2>
                     <p className="text-sm text-light-muted dark:text-dark-muted">
                       Genera códigos QR personalizados para URLs, texto, emails
                       o tarjetas de contacto.
@@ -135,9 +135,9 @@ export default function Home() {
                 {/* Form Card */}
                 <Card className="p-6 md:p-8 animate-fadeIn">
                   <div className="mb-6">
-                    <h3 className="text-2xl font-syne font-bold text-light-text dark:text-dark-text mb-2">
+                    <h2 className="text-2xl font-syne font-bold text-light-text dark:text-dark-text mb-2">
                       Acortador de URLs
-                    </h3>
+                    </h2>
                     <p className="text-sm text-light-muted dark:text-dark-muted">
                       Transforma URLs largas en enlaces cortos y fáciles de
                       compartir.

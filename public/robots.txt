@@ -1,0 +1,17 @@
+# Permitir todos los crawlers
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://linkeer.com/sitemap.xml
+
+# Bloquear APIs
+User-agent: *
+Disallow: /api/
+
+# Políticas específicas
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /

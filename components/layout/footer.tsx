@@ -34,7 +34,7 @@ export function Footer() {
     <footer className="w-full pt-16 pb-8 border-t border-light-muted/10 dark:border-dark-muted/10 bg-light-bg/50 dark:bg-dark-bg/50 mt-auto">
       <div className="max-w-7xl mx-auto px-6">
         {/* Main Footer Content */}
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 mb-8 sm:mb-12">
           {/* Brand Column */}
           <div className="space-y-4 col-span-1 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 group w-fit">

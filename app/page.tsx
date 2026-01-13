@@ -49,7 +49,7 @@ export default function Home() {
         {/* Hero Section */}
         <div className="max-w-7xl mx-auto px-6 pt-12 pb-24">
           <div className="space-y-4 mb-12 text-center">
-            <h1 className="text-5xl md:text-7xl font-kangge font-bold leading-tight tracking-wider text-light-text dark:text-dark-text">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-kangge font-bold leading-tight tracking-wider text-light-text dark:text-dark-text">
               {t.hero.title}
               <span className="text-primary">.</span>
             </h1>

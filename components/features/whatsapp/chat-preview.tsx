@@ -72,7 +72,7 @@ export function ChatPreview({ formData }: ChatPreviewProps) {
     : formData.country.code;
 
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className="w-full max-w-[320px] sm:max-w-md mx-auto">
       {/* Phone Frame */}
       <div
         className={cn(

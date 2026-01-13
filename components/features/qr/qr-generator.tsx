@@ -99,7 +99,7 @@ export function QRGenerator({ onValueChange, onColorChange }: QRGeneratorProps) 
     <div className="space-y-6">
       {/* Type Selector Tabs */}
       <Tabs value={activeType} onValueChange={(v) => setActiveType(v as QRType)}>
-        <TabsList className="grid grid-cols-4 w-full">
+        <TabsList className="grid grid-cols-2 sm:grid-cols-4 w-full gap-2">
           <TabsTrigger value="url">{t.qr.types.url}</TabsTrigger>
           <TabsTrigger value="text">{t.qr.types.text}</TabsTrigger>
           <TabsTrigger value="email">{t.qr.types.email}</TabsTrigger>
@@ -315,7 +315,7 @@ export function QRGenerator({ onValueChange, onColorChange }: QRGeneratorProps) 
         <label className="block text-sm font-syne font-semibold mb-3 text-light-text dark:text-dark-text">
           {t.qr.color}
         </label>
-        <div className="grid grid-cols-6 gap-3">
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
           {presetColors.map((preset) => (
             <button
               key={preset.color}

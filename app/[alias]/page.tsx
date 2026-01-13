@@ -40,20 +40,20 @@ export default async function RedirectPage({ params }: RedirectPageProps) {
     notFound();
   }
 
-  // Increment click count (fire-and-forget)
-  // Don't await to avoid blocking the redirect
-  prisma.shortenedUrl
-    .update({
+  // Increment click count with await to prevent race condition
+  try {
+    await prisma.shortenedUrl.update({
       where: { id: shortenedUrl.id },
       data: {
         clickCount: { increment: 1 },
         lastClickAt: new Date(),
       },
-    })
-    .catch((error) => {
-      // Log error but don't block redirect
-      console.error("Error updating click count:", error);
     });
+  } catch (error) {
+    // Log error but don't block redirect
+    console.error("Error updating click count:", error);
+    // TODO: Implementar queue de retry en producción
+  }
 
   // Redirect to original URL
   redirect(shortenedUrl.originalUrl);

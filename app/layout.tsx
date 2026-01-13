@@ -24,7 +24,7 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://linkeer.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
   title: {
     default: "LINKER - Simplifica Tus Conexiones",
     template: "%s | LINKER"
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: "https://linkeer.com",
+    url: process.env.NEXT_PUBLIC_BASE_URL,
     siteName: "LINKER",
     title: "LINKER - Simplifica Tus Conexiones",
     description:
@@ -84,10 +84,10 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   alternates: {
-    canonical: "https://linkeer.com",
+    canonical: process.env.NEXT_PUBLIC_BASE_URL,
     languages: {
-      "es-ES": "https://linkeer.com",
-      "en-US": "https://linkeer.com/en",
+      "es-ES": process.env.NEXT_PUBLIC_BASE_URL,
+      "en-US": `${process.env.NEXT_PUBLIC_BASE_URL}/en`,
     },
   },
 };
@@ -108,7 +108,7 @@ export default function RootLayout({
               "@type": "WebApplication",
               "name": "LINKER",
               "description": "La herramienta todo en uno para creadores digitales. Genera enlaces de WhatsApp, códigos QR y URLs cortas en segundos.",
-              "url": "https://linkeer.com",
+              "url": process.env.NEXT_PUBLIC_BASE_URL,
               "applicationCategory": "UtilityApplication",
               "operatingSystem": "Any",
               "offers": {

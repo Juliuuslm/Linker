@@ -8,7 +8,20 @@ import { z } from "zod";
 export const urlSchema = z
   .string()
   .min(1, "La URL es requerida")
+  .max(2048, "La URL es demasiado larga (máximo 2048 caracteres)")
   .url("La URL debe ser válida (incluir http:// o https://)")
+  .refine(
+    (url) => {
+      try {
+        const parsed = new URL(url);
+        // Solo permitir http y https
+        return parsed.protocol === "http:" || parsed.protocol === "https:";
+      } catch {
+        return false;
+      }
+    },
+    "Solo se permiten URLs con protocolo http o https"
+  )
   .refine(
     (url) => {
       try {

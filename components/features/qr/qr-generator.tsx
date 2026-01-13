@@ -8,6 +8,17 @@ import { useLocale } from "@/lib/hooks/use-locale";
 import { cn } from "@/lib/utils/cn";
 import type { QRType, QRUrlData, QRTextData, QREmailData, QRVCardData } from "@/types/qr.types";
 
+/**
+ * Escapa caracteres especiales para formato vCard
+ */
+function escapeVCard(str: string): string {
+  return str
+    .replace(/\\/g, "\\\\")
+    .replace(/\n/g, "\\n")
+    .replace(/,/g, "\\,")
+    .replace(/;/g, "\\;");
+}
+
 interface QRGeneratorProps {
   onValueChange?: (value: string) => void;
   onColorChange?: (color: string) => void;
@@ -20,6 +31,7 @@ export function QRGenerator({ onValueChange, onColorChange }: QRGeneratorProps) 
 
   // Form data for each type
   const [urlData, setUrlData] = React.useState<QRUrlData>({ url: "" });
+  const [urlError, setUrlError] = React.useState<string>("");
   const [textData, setTextData] = React.useState<QRTextData>({ text: "" });
   const [emailData, setEmailData] = React.useState<QREmailData>({
     email: "",
@@ -37,19 +49,41 @@ export function QRGenerator({ onValueChange, onColorChange }: QRGeneratorProps) 
   // Generate QR value based on type
   const generateQRValue = React.useCallback((): string => {
     switch (activeType) {
-      case "url":
-        return urlData.url.trim();
+      case "url": {
+        const url = urlData.url.trim();
+        if (!url) return "";
+
+        // Validate URL with protocol
+        try {
+          const parsed = new URL(url);
+          // Solo permitir http y https
+          if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+            return "";
+          }
+          return url;
+        } catch {
+          return "";
+        }
+      }
 
       case "text":
         return textData.text.trim();
 
       case "email": {
-        if (!emailData.email.trim()) return "";
+        const email = emailData.email.trim();
+        if (!email) return "";
+
+        // Validar formato de email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          return "";
+        }
+
         const params = new URLSearchParams();
         if (emailData.subject) params.set("subject", emailData.subject);
         if (emailData.body) params.set("body", emailData.body);
         const query = params.toString();
-        return `mailto:${emailData.email}${query ? `?${query}` : ""}`;
+        return `mailto:${email}${query ? `?${query}` : ""}`;
       }
 
       case "vcard": {
@@ -57,11 +91,11 @@ export function QRGenerator({ onValueChange, onColorChange }: QRGeneratorProps) 
         const vcard = [
           "BEGIN:VCARD",
           "VERSION:3.0",
-          `FN:${vcardData.name}`,
-          vcardData.phone && `TEL:${vcardData.phone}`,
-          vcardData.email && `EMAIL:${vcardData.email}`,
-          vcardData.organization && `ORG:${vcardData.organization}`,
-          vcardData.title && `TITLE:${vcardData.title}`,
+          `FN:${escapeVCard(vcardData.name)}`,
+          vcardData.phone && `TEL:${escapeVCard(vcardData.phone)}`,
+          vcardData.email && `EMAIL:${escapeVCard(vcardData.email)}`,
+          vcardData.organization && `ORG:${escapeVCard(vcardData.organization)}`,
+          vcardData.title && `TITLE:${escapeVCard(vcardData.title)}`,
           "END:VCARD",
         ]
           .filter(Boolean)
@@ -120,8 +154,21 @@ export function QRGenerator({ onValueChange, onColorChange }: QRGeneratorProps) 
               type="url"
               placeholder="https://ejemplo.com"
               value={urlData.url}
-              onChange={(e) => setUrlData({ url: e.target.value })}
+              onChange={(e) => {
+                setUrlData({ url: e.target.value });
+                setUrlError("");
+              }}
+              onBlur={(e) => {
+                const url = e.target.value.trim();
+                if (url && !url.startsWith("http")) {
+                  setUrlError("La URL debe comenzar con http:// o https://");
+                }
+              }}
+              className={cn(urlError && "border-red-500")}
             />
+            {urlError && (
+              <p className="mt-1 text-xs text-red-500">{urlError}</p>
+            )}
           </div>
         </TabsContent>
 

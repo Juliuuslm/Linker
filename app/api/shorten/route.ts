@@ -99,7 +99,14 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           createdAt: shortenedUrl.createdAt,
         },
       },
-      { status: 201 }
+      {
+        status: 201,
+        headers: {
+          "Access-Control-Allow-Origin": process.env.NEXT_PUBLIC_BASE_URL || "*",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+        },
+      }
     );
   } catch (error) {
     console.error("Error shortening URL:", error);
@@ -127,7 +134,7 @@ export async function OPTIONS(): Promise<NextResponse> {
     {
       status: 200,
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": process.env.NEXT_PUBLIC_BASE_URL || "*",
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type",
       },

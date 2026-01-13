@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model ShortenedUrl {
@@ -25,5 +25,6 @@ model ShortenedUrl {
 
   @@index([alias])
   @@index([createdAt])
+  @@index([isActive, createdAt])
   @@map("shortened_urls")
 }

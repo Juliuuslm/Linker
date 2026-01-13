@@ -24,10 +24,26 @@ export function Footer() {
   };
 
   const socialLinks = [
-    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-    { icon: Youtube, href: "https://youtube.com", label: "YouTube" },
+    {
+      icon: Instagram,
+      href: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://instagram.com",
+      label: "Instagram"
+    },
+    {
+      icon: Twitter,
+      href: process.env.NEXT_PUBLIC_TWITTER_URL || "https://twitter.com",
+      label: "Twitter"
+    },
+    {
+      icon: Facebook,
+      href: process.env.NEXT_PUBLIC_FACEBOOK_URL || "https://facebook.com",
+      label: "Facebook"
+    },
+    {
+      icon: Youtube,
+      href: process.env.NEXT_PUBLIC_YOUTUBE_URL || "https://youtube.com",
+      label: "YouTube"
+    },
   ];
 
   return (

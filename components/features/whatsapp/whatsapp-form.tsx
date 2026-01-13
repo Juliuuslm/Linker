@@ -14,6 +14,7 @@ import { CountrySelector } from "./country-selector";
 import { COUNTRIES } from "@/lib/constants/countries";
 import { useLocale } from "@/lib/hooks/use-locale";
 import { cn } from "@/lib/utils/cn";
+import { validatePhoneNumber } from "@/lib/validators/phone.validator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -44,6 +45,8 @@ export function WhatsAppForm({
   );
   const [generatedLink, setGeneratedLink] = React.useState<string>("");
   const [copied, setCopied] = React.useState(false);
+  const [phoneError, setPhoneError] = React.useState<string>("");
+  const [copyError, setCopyError] = React.useState<string>("");
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   // Notify parent of form changes
@@ -55,13 +58,26 @@ export function WhatsAppForm({
   const generateLink = React.useCallback(() => {
     const { country, phone, message } = formData;
 
-    if (!phone.trim()) return "";
+    if (!phone.trim()) {
+      setPhoneError("");
+      return "";
+    }
+
+    // Validate phone number
+    const validation = validatePhoneNumber(country.code, phone);
+    if (!validation.isValid) {
+      setPhoneError(validation.error || "Número inválido");
+      return "";
+    }
+
+    // Clear error if validation passes
+    setPhoneError("");
 
     // Clean phone number (remove spaces, dashes, etc)
     const cleanPhone = phone.replace(/\D/g, "");
 
     // Build wa.me link
-    const fullPhone = `${country.code}${cleanPhone}`;
+    const fullPhone = `${country.code.replace("+", "")}${cleanPhone}`;
     const encodedMessage = encodeURIComponent(message);
     const link = message
       ? `https://wa.me/${fullPhone}?text=${encodedMessage}`
@@ -132,9 +148,11 @@ export function WhatsAppForm({
     try {
       await navigator.clipboard.writeText(generatedLink);
       setCopied(true);
+      setCopyError("");
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       console.error("Failed to copy:", error);
+      setCopyError("No se pudo copiar. Intenta seleccionar el texto manualmente.");
     }
   };
 
@@ -182,11 +200,15 @@ export function WhatsAppForm({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, phone: e.target.value }))
           }
-          className="text-lg"
+          className={cn("text-lg", phoneError && "border-red-500")}
         />
-        <p className="mt-1.5 text-xs text-light-muted dark:text-dark-muted">
-          {t.whatsapp.phoneHint}
-        </p>
+        {phoneError ? (
+          <p className="mt-1.5 text-xs text-red-500">{phoneError}</p>
+        ) : (
+          <p className="mt-1.5 text-xs text-light-muted dark:text-dark-muted">
+            {t.whatsapp.phoneHint}
+          </p>
+        )}
       </div>
 
       {/* Message Textarea */}
@@ -228,14 +250,19 @@ export function WhatsAppForm({
           id="message"
           placeholder={t.whatsapp.messagePlaceholder}
           value={formData.message}
-          onChange={(e) =>
-            setFormData((prev) => ({ ...prev, message: e.target.value }))
-          }
+          onChange={(e) => {
+            const newMessage = e.target.value;
+            // Limitar a 1000 caracteres
+            if (newMessage.length <= 1000) {
+              setFormData((prev) => ({ ...prev, message: newMessage }));
+            }
+          }}
           rows={4}
           className="resize-none text-sm sm:text-base"
+          maxLength={1000}
         />
         <p className="mt-1.5 text-xs text-light-muted dark:text-dark-muted">
-          {t.whatsapp.messageHint}
+          {formData.message.length}/1000 caracteres
         </p>
       </div>
 
@@ -294,6 +321,11 @@ export function WhatsAppForm({
               {t.common.open}
             </Button>
           </div>
+
+          {/* Copy Error Message */}
+          {copyError && (
+            <p className="text-xs text-red-500 mt-2">{copyError}</p>
+          )}
         </div>
       )}
     </div>

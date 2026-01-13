@@ -25,20 +25,6 @@ export function QRCanvas({ value, color, size }: QRCanvasProps) {
     const svg = qrRef.current.querySelector("svg");
     if (!svg) return;
 
-    // Create canvas
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    // Set canvas size with padding
-    const padding = 40;
-    canvas.width = size + padding * 2;
-    canvas.height = size + padding * 2;
-
-    // White background
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     // Convert SVG to image
     const svgData = new XMLSerializer().serializeToString(svg);
     const svgBlob = new Blob([svgData], {
@@ -47,20 +33,45 @@ export function QRCanvas({ value, color, size }: QRCanvasProps) {
     const url = URL.createObjectURL(svgBlob);
 
     const img = new Image();
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    if (!ctx) {
+      URL.revokeObjectURL(url);
+      return;
+    }
+
+    const padding = 40;
+    canvas.width = size + padding * 2;
+    canvas.height = size + padding * 2;
+
     img.onload = () => {
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, padding, padding, size, size);
+
+      // Revocar URL del SVG
       URL.revokeObjectURL(url);
 
-      // Download
       canvas.toBlob((blob) => {
         if (!blob) return;
+
+        const blobUrl = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.download = `qr-code-${Date.now()}.png`;
-        link.href = URL.createObjectURL(blob);
+        link.href = blobUrl;
         link.click();
-        URL.revokeObjectURL(link.href);
+
+        // Revocar después de un delay para asegurar descarga
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
       });
     };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      console.error("Error loading SVG for PNG conversion");
+    };
+
     img.src = url;
   };
 
@@ -94,22 +105,28 @@ export function QRCanvas({ value, color, size }: QRCanvasProps) {
           "animate-fadeIn"
         )}
       >
-        <div
-          ref={qrRef}
-          className="bg-white p-6 rounded-xl shadow-lg"
-          style={{
-            boxShadow: "0 10px 40px rgba(0,0,0,0.1)",
-          }}
-        >
-          <QRCodeSVG
-            value={value || "https://linkeer.com"}
-            size={size}
-            fgColor={color}
-            bgColor="#FFFFFF"
-            level="H"
-            includeMargin={false}
-          />
-        </div>
+        {value ? (
+          <div
+            ref={qrRef}
+            className="bg-white p-6 rounded-xl shadow-lg"
+            style={{
+              boxShadow: "0 10px 40px rgba(0,0,0,0.1)",
+            }}
+          >
+            <QRCodeSVG
+              value={value}
+              size={size}
+              fgColor={color}
+              bgColor="#FFFFFF"
+              level="H"
+              includeMargin={false}
+            />
+          </div>
+        ) : (
+          <div className="text-center text-light-muted dark:text-dark-muted py-12">
+            <p className="text-sm">Ingresa datos para generar el código QR</p>
+          </div>
+        )}
       </div>
 
       {/* Download Buttons */}

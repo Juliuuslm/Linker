@@ -36,7 +36,25 @@ export function UrlForm({ onSuccess }: UrlFormProps) {
         }),
       });
 
-      const data: ShortenUrlResponse = await response.json();
+      // Validar status HTTP
+      if (!response.ok) {
+        if (response.status >= 500) {
+          setError("Error del servidor. Por favor intenta de nuevo.");
+          return;
+        }
+        if (response.status === 429) {
+          setError("Demasiadas solicitudes. Por favor espera un momento.");
+          return;
+        }
+      }
+
+      let data: ShortenUrlResponse;
+      try {
+        data = await response.json();
+      } catch (parseError) {
+        setError("Error al procesar la respuesta del servidor");
+        return;
+      }
 
       if (!data.success) {
         setError(data.error?.message || "Error al acortar la URL");

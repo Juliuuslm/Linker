@@ -89,7 +89,7 @@ export function QRCanvas({ value, color, size }: QRCanvasProps) {
       {/* QR Code Display */}
       <div
         className={cn(
-          "p-8 rounded-2xl flex items-center justify-center",
+          "p-4 sm:p-6 md:p-8 rounded-2xl flex items-center justify-center",
           "bg-white border-2 border-light-muted/20 dark:border-dark-muted/20",
           "animate-fadeIn"
         )}

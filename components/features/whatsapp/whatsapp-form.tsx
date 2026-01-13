@@ -202,7 +202,7 @@ export function WhatsAppForm({
         </label>
 
         {/* Format Buttons */}
-        <div className="flex gap-2 mb-2">
+        <div className="flex flex-wrap gap-2 mb-2">
           {formatButtons.map((btn) => (
             <button
               key={btn.action}
@@ -231,8 +231,8 @@ export function WhatsAppForm({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, message: e.target.value }))
           }
-          rows={6}
-          className="resize-none"
+          rows={4}
+          className="resize-none text-sm sm:text-base"
         />
         <p className="mt-1.5 text-xs text-light-muted dark:text-dark-muted">
           {t.whatsapp.messageHint}

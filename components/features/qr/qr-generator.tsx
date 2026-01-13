@@ -139,7 +139,8 @@ export function QRGenerator({ onValueChange, onColorChange }: QRGeneratorProps) 
               placeholder="Escribe cualquier texto aquí..."
               value={textData.text}
               onChange={(e) => setTextData({ text: e.target.value })}
-              rows={6}
+              rows={4}
+              className="text-sm sm:text-base"
             />
           </div>
         </TabsContent>
@@ -200,7 +201,8 @@ export function QRGenerator({ onValueChange, onColorChange }: QRGeneratorProps) 
               onChange={(e) =>
                 setEmailData((prev) => ({ ...prev, body: e.target.value }))
               }
-              rows={4}
+              rows={3}
+              className="text-sm sm:text-base"
             />
           </div>
         </TabsContent>

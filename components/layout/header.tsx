@@ -24,7 +24,7 @@ export function Header({ onHistoryClick, historyCount = 0 }: HeaderProps) {
           <div className="w-10 h-10 rounded-xl flex items-center justify-center transform rotate-3 bg-primary shadow-lg group-hover:rotate-6 transition-transform duration-300">
             <LinkIcon className="text-white w-6 h-6" />
           </div>
-          <h1 className="text-3xl font-kangge font-bold tracking-wider text-light-text dark:text-dark-text">
+          <h1 className="text-2xl sm:text-3xl font-kangge font-bold tracking-wider text-light-text dark:text-dark-text">
             LINKER
           </h1>
         </Link>

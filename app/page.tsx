@@ -53,7 +53,7 @@ export default function Home() {
               {t.hero.title}
               <span className="text-primary">.</span>
             </h1>
-            <p className="text-lg md:text-xl font-medium max-w-2xl mx-auto text-light-muted dark:text-dark-muted">
+            <p className="text-base sm:text-lg md:text-xl font-medium max-w-2xl mx-auto text-light-muted dark:text-dark-muted">
               {t.hero.description}
             </p>
           </div>
@@ -70,7 +70,7 @@ export default function Home() {
             <TabsContent value="whatsapp" className="mt-0">
               <div className="grid lg:grid-cols-2 gap-8 items-start">
                 {/* Form Column */}
-                <Card className="p-6 md:p-8 animate-fadeIn">
+                <Card className="p-4 sm:p-6 md:p-8 animate-fadeIn">
                   <div className="mb-6">
                     <h2 className="text-2xl font-syne font-bold text-light-text dark:text-dark-text mb-2">
                       {t.whatsapp.title}
@@ -90,7 +90,7 @@ export default function Home() {
                   className="lg:sticky lg:top-24 animate-fadeIn"
                   style={{ animationDelay: "150ms" }}
                 >
-                  <Card className="p-6 md:p-8">
+                  <Card className="p-4 sm:p-6 md:p-8">
                     <ChatPreview formData={whatsappData} />
                   </Card>
                 </div>
@@ -101,7 +101,7 @@ export default function Home() {
             <TabsContent value="qr" className="mt-0">
               <div className="grid lg:grid-cols-2 gap-8 items-start">
                 {/* Form Column */}
-                <Card className="p-6 md:p-8 animate-fadeIn">
+                <Card className="p-4 sm:p-6 md:p-8 animate-fadeIn">
                   <div className="mb-6">
                     <h2 className="text-2xl font-syne font-bold text-light-text dark:text-dark-text mb-2">
                       Creador de Códigos QR
@@ -122,7 +122,7 @@ export default function Home() {
                   className="lg:sticky lg:top-24 animate-fadeIn"
                   style={{ animationDelay: "150ms" }}
                 >
-                  <Card className="p-6 md:p-8">
+                  <Card className="p-4 sm:p-6 md:p-8">
                     <QRCanvas value={qrValue} color={qrColor} size={200} />
                   </Card>
                 </div>
@@ -133,7 +133,7 @@ export default function Home() {
             <TabsContent value="shortener" className="mt-0">
               <div className="max-w-2xl mx-auto space-y-6">
                 {/* Form Card */}
-                <Card className="p-6 md:p-8 animate-fadeIn">
+                <Card className="p-4 sm:p-6 md:p-8 animate-fadeIn">
                   <div className="mb-6">
                     <h2 className="text-2xl font-syne font-bold text-light-text dark:text-dark-text mb-2">
                       Acortador de URLs
@@ -148,7 +148,7 @@ export default function Home() {
 
                 {/* Result Display */}
                 {shortenedUrl && (
-                  <Card className="p-6 md:p-8 animate-fadeIn">
+                  <Card className="p-4 sm:p-6 md:p-8 animate-fadeIn">
                     <UrlResult
                       shortUrl={shortenedUrl.shortUrl}
                       originalUrl={shortenedUrl.originalUrl}
